@@ -1,11 +1,10 @@
 const express = require("express");
 const cors = require("cors");
-const dbConfig = require("./app/config/db.config")
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const socket = require("./app/utils/ludo.socket")
-
+require('dotenv').config({path: './.env.development'})
 var corsOptions = {
   origin: "http://localhost:4200"
 };
@@ -18,7 +17,6 @@ const connectDB = require("./connect");
 
 // parse requests of content-type - application/json
 app.use(express.json());
-
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
@@ -30,8 +28,7 @@ app.get("/", (req, res) => {
 const start = async () => {
   try {
       console.log('Eshtablishing database connection...')
-      // await connectDB(`mongodb+srv://${dbConfig.USERNAME}:${dbConfig.PASSWORD}${dbConfig.HOST}/${dbConfig.DB}`);
-      await connectDB(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`);
+      await connectDB(process.env.DB_URL);
       console.log('Connected to database...')
       const PORT = process.env.PORT || 8080;
       server.listen(PORT, () => {
