@@ -28,6 +28,8 @@ app.get("/", (req, res) => {
 const start = async () => {
   try {
       console.log('Eshtablishing database connection...')
+      console.log(process.env.DB_URL)
+      console.log(process.env.NODE_ENV)
       await connectDB(process.env.DB_URL);
       console.log('Connected to database...')
       const PORT = process.env.PORT || 8080;
