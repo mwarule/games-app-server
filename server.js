@@ -6,9 +6,8 @@ const server = http.createServer(app);
 const socket = require("./app/utils/ludo.socket")
 require('dotenv').config({path: './.env.development'})
 var corsOptions = {
-  origin: "http://localhost:4200"
+  origin: process.env.CORS_URL,
 };
-const path = require('path');
 socket.init(server)
 
 app.use(cors(corsOptions));
@@ -19,7 +18,6 @@ const connectDB = require("./connect");
 app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
-app.use('/', express.static(path.join(__dirname, './frontend')));
 const start = async () => {
   try {
       console.log('Eshtablishing database connection...')
