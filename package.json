@@ -18,9 +18,10 @@
     "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.0",
+    "path": "^0.12.7",
     "socket.io": "^4.6.1",
-    "uuid": "^9.0.0",
-    "utf-8-validate": "^5.0.10"
+    "utf-8-validate": "^5.0.10",
+    "uuid": "^9.0.0"
   },
   "engines": {
     "node": "18.x"
